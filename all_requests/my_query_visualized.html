@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/images/icons/favicon.ico/">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/css/util.css">
+	<link rel="stylesheet" type="text/css" href="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/css/main.css">
+<!--===============================================================================================-->
+</head>
+<body>
+	
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100">
+					<h3 style="color:rgb(245, 245, 245);font-family: OpenSans-Regular;">Select Statement</h3>
+					<br>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Input Line</th>
+								<th class="column2">Column Name</th>
+								<th class="column3">Description</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							
+        <tr>
+            <td class="column1">c.id</td>
+            <td class="column2">customer_id</td>
+            <td class="column3">This statement pulls from the id column in the ANALYTICS.PRODUCTION.CUSTOMERS table</td>
+        </tr>
+        
+        <tr>
+            <td class="column1">case when count_of_unique_order_ids > 0 then 'active' else 'inactive' end</td>
+            <td class="column2">customer_status</td>
+            <td class="column3">This code is using a CASE statement to create a new column called customer_status that contains the value 'active' if count_of_unique_order_ids > 0 and 'inactive' otherwise.</td>
+        </tr>
+        
+        <tr>
+            <td class="column1">p.last_delivery_date</td>
+            <td class="column2">last_delivery_date</td>
+            <td class="column3">This statement pulls from the last_delivery_date column in the CUSTOMER_LAST_90_DAY_PURCHASES table</td>
+        </tr>
+        
+        <tr>
+            <td class="column1">p.total_order_revenue</td>
+            <td class="column2">total_order_revenue</td>
+            <td class="column3">This statement pulls from the total_order_revenue column in the CUSTOMER_LAST_90_DAY_PURCHASES table</td>
+        </tr>
+        
+        <tr>
+            <td class="column1">timestampdiff(day, p.first_delivery_date, p.last_delivery_date)</td>
+            <td class="column2">days_between_first_and_last_order</td>
+            <td class="column3">This code is calculating the number of days between the first and last order for each customer.</td>
+        </tr>
+        
+        <tr>
+            <td class="column1">rank() over (partition by c.id order by total_order_revenue desc)</td>
+            <td class="column2">customer_revenue_rank</td>
+            <td class="column3">This code is doing a ranking of the customers based on their total revenue.
+The code is using window functions to do this.
+</td>
+        </tr>
+        
+        <tr>
+            <td class="column1">c.*</td>
+            <td class="column2">None</td>
+            <td class="column3">Wildcard statement selects all columns from the ANALYTICS.PRODUCTION.CUSTOMERS table</td>
+        </tr>
+        
+							<!--========================PLACE TABLE DATA HERE=======================================================================-->	
+								<!-- <tr>
+									<td class="column1">WOOOOOPS2</td>
+									<td class="column2">200398</td>
+									<td class="column3">iPhone X 64Gb Grey</td>
+									<td class="column4">$999.00</td>
+									<td class="column5">1</td>
+									<td class="column6">$999.00</td>
+								</tr> -->
+								
+						</tbody>
+					</table>
+
+					<br>
+					<br>
+
+					<h3 style="color:rgb(245, 245, 245);font-family: OpenSans-Regular;">Table Sources</h3>
+					<br>
+					<table>
+						<thead>
+							<tr class="table100-head">
+								<th class="column1">Input Line</th>
+								<th class="column2">Table Name (Aliased as)</th>
+								<th class="column3">Description</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							
+            <tr>
+                <td class="column1">FROM ANALYTICS.PRODUCTION.CUSTOMERS c</td>
+                <td class="column2">ANALYTICS.PRODUCTION.CUSTOMERS (Aliased as: c)</td>
+                <td class="column3">This query is pulling from the table:  ANALYTICS.PRODUCTION.CUSTOMERS c</td>
+            </tr>
+            
+            <tr>
+                <td class="column1">LEFT JOIN customer_last_90_day_purchases p ON c.id = p.customer_id</td>
+                <td class="column2">customer_last_90_day_purchases (Aliased as: p)</td>
+                <td class="column3">This code is doing a left join on the customer_last_90_day_purchases table and joining it to the customers table.
+The result of this query will be all of our customers with their last 90 day purchase date, if they have one.
+If they don't have one, then we'll just get NULL for that column.</td>
+            </tr>
+            
+							<!--========================PLACE TABLE DATA HERE=======================================================================-->	
+								<!-- <tr>
+									<td class="column1">WOOOOOPS2</td>
+									<td class="column2">200398</td>
+									<td class="column3">iPhone X 64Gb Grey</td>
+									<td class="column4">$999.00</td>
+									<td class="column5">1</td>
+									<td class="column6">$999.00</td>
+								</tr> -->
+								
+						</tbody>
+					</table>
+
+					<br>
+					<br>
+
+					<h3 style="color:rgb(245, 245, 245);font-family: OpenSans-Regular;">Table Filters</h3>
+<br>
+<table>
+	<thead>
+		<tr class="table100-head">
+			<th class="column1">Statement</th>
+			<th class="column2">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		
+            <tr>
+                <td class="column1">WHERE c.billing_details_status = 'authenticated'</td>
+                <td class="column2">This code is filtering for all of the customers that have authenticated their billing information.
+</td>
+            </tr>
+            
+            <tr>
+                <td class="column1">AND c.customer_created_timestamp > date('2020-01-01')</td>
+                <td class="column2">This code is filtering out any rows where customer_created_timestamp is less than Jan 1, 2020.</td>
+            </tr>
+            
+	</tbody>
+</table>
+<br>
+<br>
+					<h3 style="color:rgb(245, 245, 245);font-family: OpenSans-Regular;">Groupings + Ordering</h3>
+<br>
+<table>
+	<thead>
+		<tr class="table100-head">
+			<th class="column1">Statement</th>
+			<th class="column2">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		
+            <tr>
+                <td class="column1">ORDER BY c.customer_created_timestamp DESC</td>
+                <td class="column2">This code is using the `ORDER BY` statement to sort the results by customer_created_timestamp in descending order (most recent first).</td>
+            </tr>
+            
+	</tbody>
+</table>
+<br>
+<br>
+
+					<a class="w-scribe-badge" href="https://missinglinkdata.com/">
+	<img src="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/images/icons/rp.svg" alt style="margin-right: 8px; width: 16px;">
+	<img src="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/images/icons/docu_by_sc.svg" alt="Documented By Scribe" alt style="height: 16px;">
+</a>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+<!--===============================================================================================-->	
+	<script src="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/bootstrap/js/popper.js"></script>
+	<script src="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="https://jonahkaplan1.github.io/a_random_repo_that_contains_css_and_html.github.io/js/main.js"></script>
+
+</body>
+</html>

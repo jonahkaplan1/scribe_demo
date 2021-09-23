@@ -1,0 +1,45 @@
+{
+  "scribe_response": [
+    {
+      "sql_line": {
+        "type": "SELECT"
+      },
+      "raw_line": "SELECT",
+      "sql_line_for_commenting": "SELECT",
+      "description": "SELECT"
+    },
+    {
+      "sql_line": {
+        "type": "STATEMENT"
+      },
+      "raw_line": "v.*",
+      "alias": "None",
+      "sql_line_is_wildcard": true,
+      "sql_line_has_transformation": false,
+      "sql_line_for_commenting": "Wildcard statement selects all columns from the visits_main table",
+      "description": "Wildcard statement selects all columns from the visits_main table"
+    },
+    {
+      "sql_line": {
+        "type": "FROM"
+      },
+      "raw_line": "FROM visits_main v",
+      "alias": "v",
+      "table_name_with_alias": "visits_main (Aliased as: v)",
+      "sql_line_for_commenting": "This query is pulling from the table:  visits_main v",
+      "description": "This query is pulling from the table:  visits_main v"
+    },
+    {
+      "sql_line": {
+        "type": "JOIN"
+      },
+      "raw_line": "LEFT JOIN accounts a ON v.account_id = a.id",
+      "alias": "a",
+      "table_name_with_alias": "accounts (Aliased as: a)",
+      "sql_line_for_commenting": "LEFT JOIN accounts a ON visits_main.account_id = accounts.id",
+      "description": "This code is joining the visits table to the accounts table.\nThe left join means that we are only including rows from the visits table that have a corresponding row in the accounts table.\nWe can see this by looking at our output:"
+    }
+  ],
+  "html_documentation": null,
+  "dbt_model_yml": null
+}
