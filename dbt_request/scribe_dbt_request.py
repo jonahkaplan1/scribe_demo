@@ -13,7 +13,7 @@ body = {
     "tenancy": "prod",
     "produce_scribe_json_response": False, # In this example we dont want the json response
     "produce_dbt_model_yml": True,
-    "file_or_table_name": "my_query" # Optional, This sets the name of our model name
+    "file_or_table_name": "my_query", # Optional, This sets the name of our model name
     "dbt_model_yml_column_tests": 'both', # Optional, default is 'none'
     "dbt_model_yml_version": 3,  # Optional, default is 2
     "dbt_model_yml_table_description": "In this table we define our customer metrics" # Optional, default is an empty string
